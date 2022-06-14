@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.songs.dao.SongsRepository;
 import com.songs.model.Song;
+import com.songs.repository.SongsRepository;
 
 @Service
 public class SongsService {
