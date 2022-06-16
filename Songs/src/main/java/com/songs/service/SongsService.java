@@ -26,26 +26,41 @@ public class SongsService {
 		return songsRepository.findAll();
 	}
 	
+	//Devuelve todas las canciones de un determinado artista
+	public List<Song> allSongsOf(String artist) {
+		return songsRepository.findSongsByArtist(artist);
+	}
+	
 	//Recibe una canción y la agrega
 	public void addSong(Song song) {
+		Optional<Song> songOptional = songsRepository.findById(song.getId());
+		if(songOptional.isPresent()) {
+			throw new IllegalStateException("Song ID taken.");
+		}
 		songsRepository.save(song);
 	}
 	
 	//Si existe una canción con el ID, la elimina
-	public void deleteSong(int id) {
+	public String deleteSong(int id) {
 		Optional<Song> songOptional = songsRepository.findById(id);
 		if(songOptional.isPresent()) {
 			songsRepository.deleteById(id);
-		}		
+			return "OK";
+		} else {
+			throw new IllegalStateException("Invalid ID.");
+		}
 	}
 	
 	//Si existe una canción con el ID, actualiza el nombre de su productor
 	@Transactional //Anotación para manipular la información de la entidad con getters y setters
-	public void updateSongProducer(int id, String producer) {
+	public String updateSongProducer(int id, String producer) {
 		Optional<Song> songOptional = songsRepository.findById(id);
 		if(songOptional.isPresent()) {
 			songOptional.get().setProducer(producer);
-		}	
+			return "OK";
+		} else {
+			throw new IllegalStateException("Invalid ID.");
+		}
 	}
 
 }

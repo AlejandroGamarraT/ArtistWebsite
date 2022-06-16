@@ -240,7 +240,8 @@ sup {
 
 a {
   color: #64a19d;
-  text-decoration: underline;
+  text-decoration: none;
+  
 }
 a:hover {
   color: #50817e;
@@ -320,6 +321,7 @@ caption {
 th {
   text-align: center;
   text-align: -webkit-match-parent;
+  color: #64a19d;
 }
 
 thead,
@@ -11711,4 +11713,21 @@ body {
 
 #spotify-logo {
 	width:25%;
+}
+
+#myForm{
+	display:table;
+}
+
+#p-input {
+	display:table-row;
+}
+
+.label-input {
+	display:table-cell;
+	padding:15px;
+}
+
+#data-input {
+	display:table-cell;
 }

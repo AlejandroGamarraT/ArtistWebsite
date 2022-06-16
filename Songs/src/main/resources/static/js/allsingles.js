@@ -9,17 +9,17 @@ function init(){
 //	Sends a XHR with a GET-type method to load all the songs
 function loadAllSongs(){
 	
-	let url = "api/songs/all";	//	Backend URL, returns a list of all the songs in database
+	let url = "api/songs/of?artist=Sol Martin";	//	Backend URL, returns a list of Sol Martin songs
 	
 	let xhr = new XMLHttpRequest();
-	xhr.addEventListener("readystatechange", check1);
+	xhr.addEventListener("readystatechange", check);
 	xhr.open("GET", url, true);
 	xhr.send(null);
 	
 }
 
 //	Checks if the GET request is ready and the resource was found
-function check1(){
+function check(){
 	if(this.readyState==4 && this.status == 200){
 		showData(this);			//	Calls function that will show the data contained in the XHR
 	}

@@ -31,6 +31,12 @@ public class SongsController {
 		return songsService.allSongs();
 	}
 	
+	//Llamada GET, devuelve todas las canciones según el nombre del artista
+	@GetMapping("api/songs/of")
+	public List<Song> allSongs(@RequestParam String artist) {
+		return songsService.allSongsOf(artist);
+	}
+	
 	//Llamada POST, recibe una canción (en el body) y la agrega
 	@PostMapping
 	public void addSong(@RequestBody Song song) {
@@ -39,15 +45,15 @@ public class SongsController {
 	
 	//Llamada DELETE, elimina la canción con el ID que recibe en la URL
 	@DeleteMapping("api/deletesong")
-	public void deleteSong(@RequestParam int id) {
-		//songsService.deleteSong(id);
+	public String deleteSong(@RequestParam int id) {
+		return songsService.deleteSong(id);
 	}
 	
 	//Llamada PUT, actualiza el productor de la canción con el ID que recibe en la URL,
 	//junto con el nombre del nuevo productor
-	@PutMapping
-	public void updateSongProducer(@RequestParam int id,
+	@PutMapping("api/updateproducer")
+	public String updateSongProducer(@RequestParam int id,
 								@RequestParam String producer) {
-		songsService.updateSongProducer(id, producer);
+		return songsService.updateSongProducer(id, producer);
 	}
 }
